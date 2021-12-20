@@ -5,6 +5,6 @@ class Particle(object):
     def __init__(self):
         print('hey')
         self.obj = lib.Particle(3)
-        print('hey2')
+        print('hey22')
 
 particle = Particle()
