@@ -1,8 +1,11 @@
-#include "particle.h"
+#include "particle.hpp"
 #include <cstdio>
 
 Particle::Particle(int dimension) {
     this->dimension = dimension;
+    printf("dimension %d\n", this->dimension);
+    
+    /*
     float* position = new float[dimension];
     float* velocity = new float[dimension];
 
@@ -13,22 +16,20 @@ Particle::Particle(int dimension) {
     
     this->position = position;
     this->velocity = velocity;
+    */
 
     printf("main constructorrrr\n");
 }
 
-Particle::Particle(int dimension, float* position, float* velocity) {
-    this->dimension = dimension;
-    this->position = position;
-    this->velocity = velocity;
+
+int Particle::get_dimension() {
+    printf("got heree\n");
+    printf("dimensionnnnn %d\n", this->dimension);
+    return this->dimension;
 }
 
-/*int main() {
+int main() {
     printf("hello\n");
     Particle p(3);
-    printf("%f\n", p.position[2]);
-}*/
-
-extern "C" {
-    Particle* Particle(int dimension);
+    //printf("%f\n", p.position[2]);
 }
