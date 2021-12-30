@@ -2,7 +2,6 @@
 #define PARTICLE_HPP
 
 #include <vector>
-
 using namespace std;
 
 class Particle {
@@ -26,5 +25,7 @@ public:
     void set_acceleration(vector<float> acceleration);
     vector<float> get_acceleration();
 };
+
+void functiontest();
 
 #endif

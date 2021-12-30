@@ -5,7 +5,7 @@ Physical Simulation Library with Python and C++
 
 - [ ] v0.1 - First Steps
     - [ ] Particle class
-    - [ ] 2D shape class with a handful of shapes inheriting from it
+    - [ ] 2D polygon class with a handful of shapes inheriting from it
     - [ ] Python interface using Boost.Python
 - [ ] v0.2 - Basic Interactions
     - [ ] one dimensional collisions
