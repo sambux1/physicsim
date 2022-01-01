@@ -1,7 +1,8 @@
 #include "triangle.hpp"
 #include <vector>
 #include <iostream>
-using namespace std;
+
+namespace shapes {
 
 Triangle::Triangle(Point p1, Point p2, Point p3) {
     this->points.push_back(p1);
@@ -13,6 +14,8 @@ Triangle::Triangle(Point p1, Point p2, Point p3) {
     this->edges.push_back(Edge(&p3, &p1));
 }
 
-vector<Point> Triangle::get_points() {
+std::vector<Point> Triangle::get_points() {
     return this->points;
 }
+
+} // namespace shapes

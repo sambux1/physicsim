@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+namespace shapes {
+
 Rectangle::Rectangle(Point p1, Point p2, Point p3, Point p4) {
     this->points.push_back(p1);
     this->points.push_back(p2);
@@ -18,3 +20,5 @@ Rectangle::Rectangle(Point p1, Point p2, Point p3, Point p4) {
 vector<Point> Rectangle::get_points() {
     return this->points;
 }
+
+} // namespace shapes

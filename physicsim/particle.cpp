@@ -16,7 +16,7 @@ int Particle::get_dimension() {
     return this->dimension;
 }
 
-void Particle::set_position(vector<float> new_position) {
+void Particle::set_position(std::vector<float> new_position) {
     if (new_position.size() != this->dimension) {
         // throw error
         return;
@@ -25,11 +25,11 @@ void Particle::set_position(vector<float> new_position) {
     this->position = new_position;
 }
 
-vector<float> Particle::get_position() {
+std::vector<float> Particle::get_position() {
     return this->position;
 }
 
-void Particle::set_velocity(vector<float> new_velocity) {
+void Particle::set_velocity(std::vector<float> new_velocity) {
     if (new_velocity.size() != this->dimension) {
         // throw error
         return;
@@ -38,11 +38,11 @@ void Particle::set_velocity(vector<float> new_velocity) {
     this->velocity = new_velocity;
 }
 
-vector<float> Particle::get_velocity() {
+std::vector<float> Particle::get_velocity() {
     return this->velocity;
 }
 
-void Particle::set_acceleration(vector<float> new_acceleration) {
+void Particle::set_acceleration(std::vector<float> new_acceleration) {
     if (new_acceleration.size() != this->dimension) {
         // throw error
         return;
@@ -51,17 +51,6 @@ void Particle::set_acceleration(vector<float> new_acceleration) {
     this->acceleration = new_acceleration;
 }
 
-vector<float> Particle::get_acceleration() {
+std::vector<float> Particle::get_acceleration() {
     return this->acceleration;
 }
-
-void functiontest() {
-    printf("function test successful\n");
-}
-
-
-/*int main() {
-    printf("hello\n");
-    Particle p(3);
-    printf("%d\n", p.get_dimension());
-}*/
