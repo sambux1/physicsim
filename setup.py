@@ -6,4 +6,4 @@ setup(name='physicsim',
       author='Sam Buxbaum',
       license='GPLv3',
       packages=['physicsim'],
-      package_data={'physicsim': ['core.so', 'shapes.so']})
+      package_data={'physicsim': ['core.so', 'shapes.so', 'graphics.so']})

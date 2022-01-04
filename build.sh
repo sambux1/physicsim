@@ -15,6 +15,13 @@ g++ -shared -o core.so -fPIC $CORE $OPTS
 SHAPES="wrapper/shapes_wrapper.cpp"
 g++ -shared -o shapes.so -fPIC $SHAPES $OPTS
 
+# --------------------
+# graphics module
+# --------------------
+GRAPHICS="wrapper/graphics_wrapper.cpp"
+GRAPHICS_LINKS="-lGL -lglut"
+g++ -shared -o graphics.so -fPIC $GRAPHICS $OPTS $GRAPHICS_LINKS
+
 
 # move all output files into the build directory
 mkdir -p build/physicsim/
@@ -26,4 +33,4 @@ cp setup.py build/
 pip install build/
 
 # run the testing suite
-
+pytest tests/

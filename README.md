@@ -9,9 +9,9 @@ Physical Simulation Library with Python and C++
     - 2D polygon class with Triangle and Rectangle inheriting from it
     - Python interface using Boost.Python
 
-- v0.2 - Sandbox
+- v0.2 - Graphics Manager
     - graphical representation of objects
-    - set position, velocity, acceleration of object from GUI
+    - a new graphics module
 - v0.3 - Interactions
     - basic collisions
     - forces

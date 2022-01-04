@@ -33,7 +33,7 @@ inline void Particle_wrapper() {
     namespace py = boost::python;
 
     // declare the Particle class
-    py::class_<Particle>("Particle", init<int>())
+    py::class_<Particle>("Particle", py::init<int>())
         // dimension
         .def_readonly("dimension", &Particle::dimension)
         .def("get_dimension", &Particle::get_dimension)
