@@ -1,5 +1,6 @@
 #include <boost/python.hpp>
 
+// must be .cpp if .cpp exists
 #include "graphics/graphicsmanager.cpp"
 
 

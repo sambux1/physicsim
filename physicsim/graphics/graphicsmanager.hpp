@@ -11,10 +11,12 @@ public:
     // set up window
     bool init(double width, double height);
 
+    // run window
+    static void run();
+
     // render to the window
     // temporary - need to find a good long term plan here
     static void render(void);
-
 
     // allows user to set the update interval
     int fps;

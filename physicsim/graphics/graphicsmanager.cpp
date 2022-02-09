@@ -1,6 +1,7 @@
 #include "graphicsmanager.hpp"
 #include <GL/freeglut.h>
 #include <cstdio>
+#include <thread>
 
 namespace graphics {
 
@@ -30,12 +31,22 @@ bool GraphicsManager::init(double width, double height) {
     glutInitWindowSize(100, 100);
     glutCreateWindow("physicsim");
 
-    // render something to the window
-    glutDisplayFunc(this->render);
-    glutMainLoop();
-
     this->active = true;
+
+    glutDisplayFunc(this->render);
+
+    std::thread graphics_thread(this->run);
+
+    // this causes a segfault but it works until the end
+    graphics_thread.detach();
+
     return true;
+}
+
+// set the display callback function and run the main loop
+// runs in a separate thread
+void GraphicsManager::run() {
+    glutMainLoop();
 }
 
 void GraphicsManager::render(void) {
