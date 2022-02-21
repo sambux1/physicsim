@@ -1,7 +1,8 @@
 #include <GL/freeglut.h>
 #include <cstdio>
+#include "renderableinterface.hpp"
 
-
+/*
 static float f = 0.0;
 
 void render(void) {
@@ -34,7 +35,6 @@ int main() {
     printf("Active: %d\n", g.is_active());
     printf("Initialized successfully: %d\n", g.init(0.0f, 0.0f));
 }
-/*
 int main() {
     printf("hello\n");
     int argc = 0;
@@ -50,4 +50,11 @@ int main() {
     glutPostRedisplay();
 
     return 0;
-}*/
+}
+*/
+
+int main() {
+    printf("hello\n");
+    graphics::Implementation i;
+    i.render();
+}

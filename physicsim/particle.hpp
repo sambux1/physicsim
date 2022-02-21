@@ -2,8 +2,9 @@
 #define PARTICLE_HPP
 
 #include <vector>
+#include "graphics/renderableinterface.hpp"
 
-class Particle {
+class Particle : public graphics::RenderableInterface {
 
 public:
     // constructor, must take dimension, all other fields are set to defaults
@@ -23,6 +24,9 @@ public:
     std::vector<float> acceleration;
     void set_acceleration(std::vector<float> new_acceleration);
     std::vector<float> get_acceleration();
+
+    // implement the Renderable interface
+    void render();
 };
 
 
@@ -41,6 +45,7 @@ inline void Particle_wrapper() {
         .add_property("position", &Particle::get_position, &Particle::set_position)
         .add_property("velocity", &Particle::get_velocity, &Particle::set_velocity)
         .add_property("acceleration", &Particle::get_acceleration, &Particle::set_acceleration)
+        .def("render", &Particle::render)
     ;
 }
 

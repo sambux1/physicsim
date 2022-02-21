@@ -49,6 +49,12 @@ void GraphicsManager::run() {
     glutMainLoop();
 }
 
+// close the window
+// this does not work
+void GraphicsManager::stop() {
+    glutDestroyWindow(glutGetWindow());
+}
+
 void GraphicsManager::render(void) {
     // tells GL to clear color buffer AND depth buffer
     // I'm guessing each is a bit in an int and the OR signals

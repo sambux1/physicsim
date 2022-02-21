@@ -54,3 +54,7 @@ void Particle::set_acceleration(std::vector<float> new_acceleration) {
 std::vector<float> Particle::get_acceleration() {
     return this->acceleration;
 }
+
+void Particle::render() {
+    printf("Rendering\n");
+}

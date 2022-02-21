@@ -1,6 +1,8 @@
 #ifndef GRAPHICSMANAGER_HPP
 #define GRAPHICSMANAGER_HPP
 
+#include <thread>
+
 namespace graphics {
 
 class GraphicsManager {
@@ -13,6 +15,9 @@ public:
 
     // run window
     static void run();
+
+    // close window
+    void stop();
 
     // render to the window
     // temporary - need to find a good long term plan here
@@ -38,6 +43,7 @@ inline void GraphicsManager_wrapper() {
 
     py::class_<graphics::GraphicsManager>("GraphicsManager", py::init<>())
         .def("init", &graphics::GraphicsManager::init)
+        .def("stop", &graphics::GraphicsManager::stop)
         .def("is_active", &graphics::GraphicsManager::is_active)
     ;
 }
