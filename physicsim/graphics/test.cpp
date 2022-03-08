@@ -1,6 +1,8 @@
 #include <GL/freeglut.h>
 #include <cstdio>
 #include "renderableinterface.hpp"
+#include "graphicsmanager.hpp"
+#include "testinstantiation.hpp"
 
 /*
 static float f = 0.0;
@@ -55,6 +57,14 @@ int main() {
 
 int main() {
     printf("hello\n");
-    graphics::Implementation i;
-    i.render();
+    graphics::GraphicsManager* g = graphics::GraphicsManager::get_instance();
+    graphics::RenderableInterface r;
+    r.register_graphics();
+    r.unregister_graphics();
+    graphics::TestInstantiation t;
+    g->add_to_render_list(&t);
+    g->add_to_render_list(&t);
+    t.register_graphics();
+
+    //g.init(100, 100);
 }

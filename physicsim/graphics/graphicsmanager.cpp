@@ -1,12 +1,15 @@
 #include "graphicsmanager.hpp"
+#include "renderableinterface.hpp"
 #include <GL/freeglut.h>
 #include <cstdio>
 #include <thread>
+#include <set>
 
 namespace graphics {
 
+std::set<RenderableInterface*> GraphicsManager::render_list;
+
 GraphicsManager::GraphicsManager() {
-    printf("Created graphics manager\n");
     this->active = false;
 }
 
@@ -17,8 +20,46 @@ bool GraphicsManager::init(double width, double height) {
         return false;
     }
 
-    // set up the window
-    
+    try {
+        // create a new thread for the graphics window and detach it
+        struct GraphicsThreadInfo info;
+        std::thread graphics_thread(this->runGlutWindow, info);
+        graphics_thread.detach();
+        this->active = true;
+        return true;
+    } catch (...) {
+        // something went wrong, handle error
+        return false;
+    }
+}
+
+// close the window
+// this does not work
+void GraphicsManager::stop() {
+}
+
+bool GraphicsManager::is_active() {
+    return this->active;
+}
+
+
+// add a renderable object to the set
+void GraphicsManager::add_to_render_list(RenderableInterface* object) {
+    printf("Size %d\n", render_list.size());
+    render_list.insert(object);
+    printf("Size %d\n", render_list.size());
+}
+
+// remove a renderable object from the set
+void GraphicsManager::remove_from_render_list(RenderableInterface* object) {
+    printf("Size %d\n", render_list.size());
+    render_list.erase(object);
+    printf("Size %d\n", render_list.size());
+}
+
+// create and run the GLUT window
+// runs in a separate thread
+void GraphicsManager::runGlutWindow(struct GraphicsThreadInfo info) {
     // call the init function with dummy parameters
     // it needs 2 arguments, but it won't use them if argc = 0
     int argc = 0;
@@ -31,28 +72,16 @@ bool GraphicsManager::init(double width, double height) {
     glutInitWindowSize(100, 100);
     glutCreateWindow("physicsim");
 
-    this->active = true;
+    // set the display callback function
+    glutDisplayFunc(render);
 
-    glutDisplayFunc(this->render);
-
-    std::thread graphics_thread(this->run);
-
-    // this causes a segfault but it works until the end
-    graphics_thread.detach();
-
-    return true;
-}
-
-// set the display callback function and run the main loop
-// runs in a separate thread
-void GraphicsManager::run() {
-    glutMainLoop();
-}
-
-// close the window
-// this does not work
-void GraphicsManager::stop() {
-    glutDestroyWindow(glutGetWindow());
+    // main event loop
+    // this repeatedly calls the event handler but not glutMainLoop()
+    // this allows us to do stuff between event loop iterations
+    while (true) {
+        glutMainLoopEvent();
+        render();
+    }
 }
 
 void GraphicsManager::render(void) {
@@ -69,10 +98,6 @@ void GraphicsManager::render(void) {
 
     // update the screen
     glutSwapBuffers();
-}
-
-bool GraphicsManager::is_active() {
-    return this->active;
 }
 
 } // namespace graphics

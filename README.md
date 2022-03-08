@@ -4,7 +4,7 @@ Physical Simulation Library with Python and C++
 ## Roadmap
 
 ### v0.2 - Graphics Manager (in progress)
-- a new graphics module
+- a graphics module using OpenGL
 - interface for objects to be rendered
 
 ### v0.1 - First Steps
