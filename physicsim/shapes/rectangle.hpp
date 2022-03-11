@@ -21,13 +21,13 @@ public:
 
 
 // wrapper
-#include <boost/python.hpp>
-inline void Rectangle_wrapper() {
-    namespace py = boost::python;
-
+#include <pybind11/pybind11.h>
+void Rectangle_wrapper(pybind11::module_ m) {
+    namespace py = pybind11;
+    
     // declare the Rectangle class
-    py::class_<shapes::Rectangle, py::bases<shapes::Polygon> >("Rectangle", py::init<
-                            shapes::Point, shapes::Point, shapes::Point, shapes::Point>())
+    py::class_<shapes::Rectangle, shapes::Polygon>(m, "Rectangle")
+        .def(py::init<shapes::Point, shapes::Point, shapes::Point, shapes::Point>())
         .def("get_points", &shapes::Rectangle::get_points)
     ;
 }

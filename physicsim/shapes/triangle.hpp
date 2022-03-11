@@ -21,13 +21,13 @@ public:
 
 
 // wrapper
-#include <boost/python.hpp>
-inline void Triangle_wrapper() {
-    namespace py = boost::python;
-
+#include <pybind11/pybind11.h>
+void Triangle_wrapper(pybind11::module_ m) {
+    namespace py = pybind11;
+    
     // declare the Triangle class
-    py::class_<shapes::Triangle, py::bases<shapes::Polygon> >("Triangle", py::init<
-                            shapes::Point, shapes::Point, shapes::Point>())
+    py::class_<shapes::Triangle, shapes::Polygon>(m, "Triangle")
+        .def(py::init<shapes::Point, shapes::Point, shapes::Point>())
         .def("get_points", &shapes::Triangle::get_points)
     ;
 }

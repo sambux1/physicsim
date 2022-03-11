@@ -72,11 +72,12 @@ private:
 
 
 // wrapper
-#include <boost/python.hpp>
-inline void GraphicsManager_wrapper() {
-    namespace py = boost::python;
+#include <pybind11/pybind11.h>
+void GraphicsManager_wrapper(pybind11::module_ m) {
+    namespace py = pybind11;
 
-    py::class_<graphics::GraphicsManager>("GraphicsManager")
+    py::class_<graphics::GraphicsManager>(m, "GraphicsManager")
+        //.def(py::init<int>())
         .def("init", &graphics::GraphicsManager::init)
         .def("stop", &graphics::GraphicsManager::stop)
         .def("is_active", &graphics::GraphicsManager::is_active)
@@ -84,6 +85,5 @@ inline void GraphicsManager_wrapper() {
         .def("remove_from_render_list", &graphics::GraphicsManager::remove_from_render_list)
     ;
 }
-
 
 #endif

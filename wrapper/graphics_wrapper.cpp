@@ -1,4 +1,5 @@
-#include <boost/python.hpp>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 // must be .cpp if .cpp exists
 #include "graphics/graphicsmanager.cpp"
@@ -6,9 +7,9 @@
 #include "particle.cpp"
 
 
-BOOST_PYTHON_MODULE(graphics) {
-    GraphicsManager_wrapper();
-    RenderableInterface_wrapper();
+namespace py = pybind11;
 
-    Particle_wrapper();
+PYBIND11_MODULE(graphics, m) {
+    GraphicsManager_wrapper(m);
+    RenderableInterface_wrapper(m);
 }

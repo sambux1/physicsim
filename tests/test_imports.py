@@ -10,7 +10,7 @@ class TestImports(unittest.TestCase):
     
     def test_modules_exist(self):
         import physicsim
-        modules = ['core', 'shapes']
+        modules = ['core', 'shapes', 'graphics']
         for module in modules:
             self.assertTrue(module in dir(physicsim))
     
@@ -25,3 +25,10 @@ class TestImports(unittest.TestCase):
         classes = ['Point', 'Edge', 'Polygon', 'Triangle', 'Rectangle']
         for c in classes:
             self.assertTrue(c in dir(shapes))
+    
+    def test_graphics_module(self):
+        from physicsim import graphics
+        classes = ['GraphicsManager', 'RenderableInterface']
+        for c in classes:
+            self.assertTrue(c in dir(graphics))
+    

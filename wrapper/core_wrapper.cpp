@@ -1,14 +1,10 @@
-#include <boost/python.hpp>
-#include "converters.cpp"
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 #include "particle.cpp"
 
+namespace py = pybind11;
 
-BOOST_PYTHON_MODULE(core) {
-
-    // handle automatic type conversions
-    register_conversions();
-
-    // load all the declarations
-    //Particle_wrapper();
+PYBIND11_MODULE(core, m) {
+    Particle_wrapper(m);
 }
