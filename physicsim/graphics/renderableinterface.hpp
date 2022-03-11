@@ -30,11 +30,11 @@ public:
 
 
 // wrapper
-#include <boost/python.hpp>
-inline void RenderableInterface_wrapper() {
-    namespace py = boost::python;
+#include <pybind11/pybind11.h>
+void RenderableInterface_wrapper(pybind11::module_ m) {
+    namespace py = pybind11;
 
-    py::class_<graphics::RenderableInterface>("RenderableInterface")
+    py::class_<graphics::RenderableInterface>(m, "RenderableInterface")
         .def("register_graphics", &graphics::RenderableInterface::register_graphics)
         .def("unregister_graphics", &graphics::RenderableInterface::unregister_graphics)
     ;

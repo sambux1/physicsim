@@ -34,26 +34,28 @@ public:
 
 
 // wrapper
-#include <boost/python.hpp>
-inline void Polygon_wrapper() {
-    namespace py = boost::python;
+#include <pybind11/pybind11.h>
+void Polygon_wrapper(pybind11::module_ m) {
+    namespace py = pybind11;
 
     // declare the Point Class
-    py::class_<shapes::Point>("Point", py::init<>())
+    py::class_<shapes::Point>(m, "Point")
+        .def(py::init<>())
         .def(py::init<int, int>())
         .def_readwrite("x", &shapes::Point::x)
         .def_readwrite("y", &shapes::Point::y)
     ;
 
     // declare the Edge class
-    py::class_<shapes::Edge>("Edge", py::init<>())
+    py::class_<shapes::Edge>(m, "Edge")
+        .def(py::init<>())
         .def(py::init<shapes::Point*, shapes::Point*>())
         .def_readwrite("a", &shapes::Edge::a)
         .def_readwrite("b", &shapes::Edge::b)
     ;
 
     // declare the Polygon base class
-    py::class_<shapes::Polygon>("Polygon")
+    py::class_<shapes::Polygon>(m, "Polygon")
         .def_readonly("points", &shapes::Polygon::points)
         .def_readonly("edges", &shapes::Polygon::edges)
     ;

@@ -1,7 +1,8 @@
 # BUILD SCRIPT
 
 # universal compiler options
-OPTS="-I physicsim/ -I /usr/include/python3.10/ -lboost_python"
+OPTS="-I physicsim/ -I /usr/include/python3.10/ \
+        $(python3-config --includes) -Iextern/pybind11/include -std=c++11"
 
 # --------------------
 # core module
