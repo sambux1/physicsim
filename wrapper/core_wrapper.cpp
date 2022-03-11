@@ -10,5 +10,5 @@ BOOST_PYTHON_MODULE(core) {
     register_conversions();
 
     // load all the declarations
-    Particle_wrapper();
+    //Particle_wrapper();
 }

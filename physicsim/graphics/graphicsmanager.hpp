@@ -4,6 +4,7 @@
 #include "renderableinterface.hpp"
 #include <set>
 #include <cstdio>
+#include <mutex>
 
 /*
 This is designed to somewhat mimic a singleton class. It is not
@@ -61,6 +62,8 @@ private:
     // the list of objects to be rendered
     // static so it can be used by the graphics thread
     static std::set<RenderableInterface*> render_list;
+    // lock for the render_list
+    static std::mutex render_list_lock;
 
 };
 

@@ -4,10 +4,12 @@
 #include <cstdio>
 #include <thread>
 #include <set>
+#include <mutex>
 
 namespace graphics {
 
 std::set<RenderableInterface*> GraphicsManager::render_list;
+std::mutex GraphicsManager::render_list_lock;
 
 GraphicsManager::GraphicsManager() {
     this->active = false;
@@ -45,16 +47,24 @@ bool GraphicsManager::is_active() {
 
 // add a renderable object to the set
 void GraphicsManager::add_to_render_list(RenderableInterface* object) {
+    render_list_lock.lock();
+
     printf("Size %d\n", render_list.size());
     render_list.insert(object);
     printf("Size %d\n", render_list.size());
+
+    render_list_lock.unlock();
 }
 
 // remove a renderable object from the set
 void GraphicsManager::remove_from_render_list(RenderableInterface* object) {
+    render_list_lock.lock();
+
     printf("Size %d\n", render_list.size());
     render_list.erase(object);
     printf("Size %d\n", render_list.size());
+
+    render_list_lock.unlock();
 }
 
 // create and run the GLUT window

@@ -1,7 +1,6 @@
 #ifndef RENDERABLEINTERFACE
 #define RENDERABLEINTERFACE
 
-#include <cstdio>
 
 namespace graphics {
 
